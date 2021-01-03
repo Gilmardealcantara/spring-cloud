@@ -19,7 +19,7 @@ public class PurchaseController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> makePurchase(@RequestBody PurchaseDto request) {
-
+        purchaseService.makePurchase(request);
         return ResponseEntity.ok(request);
     }
 }
