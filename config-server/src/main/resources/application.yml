@@ -7,4 +7,5 @@ spring:
       server:
         git:
           uri: https://github.com/Gilmardealcantara/spring-cloud
-          search-paths: config-server
+          search-paths:
+            - 'config-server/supplier'
