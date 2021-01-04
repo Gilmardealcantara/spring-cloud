@@ -1,0 +1,8 @@
+pring:
+  datasource:
+    password: rootDev
+    username: rootDev
+    url: jdbc:mysql://localhost:3306/supplier
+  jpa:
+    hibernate:
+      ddl-auto: update
