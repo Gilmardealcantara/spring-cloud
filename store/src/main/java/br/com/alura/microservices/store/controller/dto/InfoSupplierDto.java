@@ -1,6 +1,6 @@
 package br.com.alura.microservices.store.controller.dto;
 
-public class InfoSupplier {
+public class InfoSupplierDto {
     private String Address;
 
     public String getAddress() {
