@@ -8,4 +8,4 @@ spring:
     config:
       server:
         native:
-          search-locations: /home/gilmar/java/alura/spring-microservices/config-server/services-configs
+          search-locations: /home/gilmar/java/alura/spring-microservices/config-server/services/supplier
