@@ -1,4 +1,4 @@
-package br.com.alura.microservices.supplier.servive;
+package br.com.alura.microservices.supplier.service;
 
 import br.com.alura.microservices.supplier.model.InfoSupplier;
 import org.springframework.beans.factory.annotation.Autowired;

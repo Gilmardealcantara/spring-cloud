@@ -1,4 +1,4 @@
-pring:
+spring:
   datasource:
     password: rootDev
     username: rootDev

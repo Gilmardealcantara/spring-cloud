@@ -1,7 +1,7 @@
 package br.com.alura.microservices.supplier.controller;
 
 import br.com.alura.microservices.supplier.model.InfoSupplier;
-import br.com.alura.microservices.supplier.servive.InfoService;
+import br.com.alura.microservices.supplier.service.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
