@@ -1,4 +1,4 @@
-package br.com.alura.microservices.store.controller.dto;
+package br.com.alura.microservices.store.dto;
 
 public class InfoSupplierDto {
     private String Address;

@@ -1,4 +1,4 @@
-package br.com.alura.microservices.store.controller.dto;
+package br.com.alura.microservices.store.dto;
 
 public class AddressDto {
     private String street;
@@ -27,5 +27,14 @@ public class AddressDto {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "AddressDto{" +
+                "street='" + street + '\'' +
+                ", number=" + number +
+                ", state='" + state + '\'' +
+                '}';
     }
 }

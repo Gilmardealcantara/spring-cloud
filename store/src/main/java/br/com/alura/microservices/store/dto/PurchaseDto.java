@@ -1,4 +1,4 @@
-package br.com.alura.microservices.store.controller.dto;
+package br.com.alura.microservices.store.dto;
 
 import java.util.List;
 
