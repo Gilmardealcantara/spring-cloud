@@ -2,10 +2,10 @@ server:
   port: 8888
 
 spring:
+  profiles:
+    active: native
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/Gilmardealcantara/spring-cloud
-          search-paths:
-            - 'config-server/supplier'
+        native:
+          search-locations: /home/gilmar/java/alura/spring-microservices/config-server/supplier
