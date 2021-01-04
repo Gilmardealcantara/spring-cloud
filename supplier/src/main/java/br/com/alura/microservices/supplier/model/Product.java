@@ -1,12 +1,14 @@
 package br.com.alura.microservices.supplier.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class InfoSupplier {
+public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +18,9 @@ public class InfoSupplier {
 	
 	private String state;
 	
-	private String address;
+	private String description;
+	
+	private BigDecimal price;
 
 	public Long getId() {
 		return id;
@@ -34,19 +38,28 @@ public class InfoSupplier {
 		this.name = nome;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
 	public String getState() {
 		return state;
 	}
 
-	public void setState(String estado) {
-		this.state = estado;
+	public void setState(String state) {
+		this.state = state;
 	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String endereco) {
-		this.address = endereco;
-	}
+	
 }
