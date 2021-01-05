@@ -1,6 +1,11 @@
 package br.com.alura.microservices.store.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Purchase {
+    @Id
     private Long oderId;
     private Integer preparationTime;
     private String destinyAddress;

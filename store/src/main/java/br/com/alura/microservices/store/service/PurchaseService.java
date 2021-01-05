@@ -5,6 +5,7 @@ import br.com.alura.microservices.store.dto.InfoOrderDTO;
 import br.com.alura.microservices.store.dto.InfoSupplierDto;
 import br.com.alura.microservices.store.dto.PurchaseDto;
 import br.com.alura.microservices.store.model.Purchase;
+import br.com.alura.microservices.store.repository.PurchaseRepository;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,14 +19,16 @@ public class PurchaseService {
     @Autowired
     private SupplierClient client;
 
-    @HystrixCommand(fallbackMethod = "makePurchaseFallback")
-    public Purchase makePurchase(PurchaseDto purchase){
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    @Autowired
+    private PurchaseRepository repository;
 
+    @HystrixCommand(threadPoolKey = "getByIdThreadPool")
+    public Purchase getById(Long id) {
+        return repository.findById(id).orElse(new Purchase());
+    }
+
+    @HystrixCommand(fallbackMethod = "makePurchaseFallback", threadPoolKey = "makePurchaseThreadPool")
+    public Purchase makePurchase(PurchaseDto purchase){
 
         String state = purchase.getAddress().getState();
 
@@ -40,6 +43,8 @@ public class PurchaseService {
         savedPurchase.setOderId(order.getId());
         savedPurchase.setPreparationTime(order.getPreparationTime());
         savedPurchase.setDestinyAddress(purchase.getAddress().toString());
+
+        repository.save(savedPurchase);
 
         return savedPurchase;
     }
