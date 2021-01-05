@@ -7,60 +7,60 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-public class Entrega {
+public class Delivery {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Long pedidoId;
+	private Long orderId;
 	
-	private LocalDate dataParaBusca;
+	private LocalDate questForDate;
 	
-	private LocalDate previsaoParaEntrega;
+	private LocalDate deliveryForecast;
 	
-	private String enderecoOrigem;
+	private String sourceAddress;
 	
-	private String enderecoDestino;
+	private String targetAddress;
 
-	public LocalDate getDataParaBusca() {
-		return dataParaBusca;
+	public LocalDate getQuestForDate() {
+		return questForDate;
 	}
 
-	public void setDataParaBusca(LocalDate dataParaBusca) {
-		this.dataParaBusca = dataParaBusca;
+	public void setQuestForDate(LocalDate dataParaBusca) {
+		this.questForDate = dataParaBusca;
 	}
 
-	public LocalDate getPrevisaoParaEntrega() {
-		return previsaoParaEntrega;
+	public LocalDate getDeliveryForecast() {
+		return deliveryForecast;
 	}
 
-	public void setPrevisaoParaEntrega(LocalDate previsaoParaEntrega) {
-		this.previsaoParaEntrega = previsaoParaEntrega;
+	public void setDeliveryForecast(LocalDate deliveryForecast) {
+		this.deliveryForecast = deliveryForecast;
 	}
 
-	public String getEnderecoOrigem() {
-		return enderecoOrigem;
+	public String getSourceAddress() {
+		return sourceAddress;
 	}
 
-	public void setEnderecoOrigem(String enderecoOrigem) {
-		this.enderecoOrigem = enderecoOrigem;
+	public void setSourceAddress(String sourceAddress) {
+		this.sourceAddress = sourceAddress;
 	}
 
-	public String getEnderecoDestino() {
-		return enderecoDestino;
+	public String getTargetAddress() {
+		return targetAddress;
 	}
 
-	public void setEnderecoDestino(String enderecoDestino) {
-		this.enderecoDestino = enderecoDestino;
+	public void setTargetAddress(String targetAddress) {
+		this.targetAddress = targetAddress;
 	}
 
-	public Long getPedidoId() {
-		return pedidoId;
+	public Long getOrderId() {
+		return orderId;
 	}
 
-	public void setPedidoId(Long pedidoId) {
-		this.pedidoId = pedidoId;
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
 	}
 
 	public Long getId() {

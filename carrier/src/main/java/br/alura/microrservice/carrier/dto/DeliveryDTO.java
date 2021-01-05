@@ -2,46 +2,46 @@ package br.alura.microrservice.carrier.dto;
 
 import java.time.LocalDate;
 
-public class EntregaDTO {
+public class DeliveryDTO {
 
-	private Long pedidoId;
+	private Long orderId;
 	
-	private LocalDate dataParaEntrega;
+	private LocalDate questForDate;
 	
-	private String enderecoOrigem;
+	private String sourceAddress;
 	
-	private String enderecoDestino;
+	private String targetAddress;
 
-	public Long getPedidoId() {
-		return pedidoId;
+	public Long getOrderId() {
+		return orderId;
 	}
 
-	public void setPedidoId(Long pedidoId) {
-		this.pedidoId = pedidoId;
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
 	}
 
-	public LocalDate getDataParaEntrega() {
-		return dataParaEntrega;
+	public LocalDate getQuestForDate() {
+		return questForDate;
 	}
 
-	public void setDataParaEntrega(LocalDate dataParaEntrega) {
-		this.dataParaEntrega = dataParaEntrega;
+	public void setQuestForDate(LocalDate questForDate) {
+		this.questForDate = questForDate;
 	}
 
-	public String getEnderecoDestino() {
-		return enderecoDestino;
+	public String getTargetAddress() {
+		return targetAddress;
 	}
 
-	public void setEnderecoDestino(String enderecoDestino) {
-		this.enderecoDestino = enderecoDestino;
+	public void setTargetAddress(String targetAddress) {
+		this.targetAddress = targetAddress;
 	}
 
-	public String getEnderecoOrigem() {
-		return enderecoOrigem;
+	public String getSourceAddress() {
+		return sourceAddress;
 	}
 
-	public void setEnderecoOrigem(String enderecoOrigem) {
-		this.enderecoOrigem = enderecoOrigem;
+	public void setSourceAddress(String sourceAddress) {
+		this.sourceAddress = sourceAddress;
 	}
 	
 }

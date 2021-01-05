@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.alura.microrservice.carrier.dto.EntregaDTO;
+import br.alura.microrservice.carrier.dto.DeliveryDTO;
 import br.alura.microrservice.carrier.dto.VoucherDTO;
-import br.alura.microrservice.carrier.model.Entrega;
 import br.alura.microrservice.carrier.service.EntregaService;
 
 @RestController
@@ -19,7 +18,7 @@ public class DeliveryController {
 	private EntregaService entregaService;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public VoucherDTO deliveryReservation(@RequestBody EntregaDTO orderDTO) {
+	public VoucherDTO deliveryReservation(@RequestBody DeliveryDTO orderDTO) {
 		return entregaService.reservaEntrega(orderDTO);
 	}
 }
