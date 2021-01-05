@@ -2,6 +2,7 @@ package br.com.alura.microservices.store.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 public class Purchase {
@@ -9,6 +10,25 @@ public class Purchase {
     private Long oderId;
     private Integer preparationTime;
     private String destinyAddress;
+
+    private LocalDate deliveryDate;
+    private Long voucher;
+
+    public LocalDate getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(LocalDate deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+    public Long getVoucher() {
+        return voucher;
+    }
+
+    public void setVoucher(Long voucher) {
+        this.voucher = voucher;
+    }
 
     public Long getOderId() {
         return oderId;

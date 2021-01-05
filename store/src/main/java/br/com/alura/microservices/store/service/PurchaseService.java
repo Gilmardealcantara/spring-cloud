@@ -1,9 +1,8 @@
 package br.com.alura.microservices.store.service;
 
+import br.com.alura.microservices.store.client.CarrierClient;
 import br.com.alura.microservices.store.client.SupplierClient;
-import br.com.alura.microservices.store.dto.InfoOrderDTO;
-import br.com.alura.microservices.store.dto.InfoSupplierDto;
-import br.com.alura.microservices.store.dto.PurchaseDto;
+import br.com.alura.microservices.store.dto.*;
 import br.com.alura.microservices.store.model.Purchase;
 import br.com.alura.microservices.store.repository.PurchaseRepository;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -12,12 +11,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Service
 public class PurchaseService {
     private static final Logger LOG = LoggerFactory.getLogger(PurchaseService.class);
 
     @Autowired
-    private SupplierClient client;
+    private SupplierClient supplierClient;
+
+    @Autowired
+    private CarrierClient carrierClient;
 
     @Autowired
     private PurchaseRepository repository;
@@ -27,22 +32,31 @@ public class PurchaseService {
         return repository.findById(id).orElse(new Purchase());
     }
 
-    @HystrixCommand(fallbackMethod = "makePurchaseFallback", threadPoolKey = "makePurchaseThreadPool")
+    // @HystrixCommand(fallbackMethod = "makePurchaseFallback", threadPoolKey = "makePurchaseThreadPool")
     public Purchase makePurchase(PurchaseDto purchase){
 
         String state = purchase.getAddress().getState();
 
         LOG.info("Getting information for supplier of {}", state);
-        InfoSupplierDto info = client.getInfoByState(state);
+        InfoSupplierDto info = supplierClient.getInfoByState(state);
 
         LOG.info("Placing a Order");
-        InfoOrderDTO order = client.placeOrder(purchase.getItems());
-        System.out.println(info.getAddress());
+        InfoOrderDTO order = supplierClient.placeOrder(purchase.getItems());
+
+        InfoDeliveryDTO deliveryDTO = new InfoDeliveryDTO();
+        deliveryDTO.setOrderId(order.getId());
+        deliveryDTO.setQuestForDate(LocalDate.now().plusDays(order.getPreparationTime()));
+        deliveryDTO.setSourceAddress(info.getAddress());
+        deliveryDTO.setTargetAddress(purchase.getAddress().toString());
+        VoucherDTO voucher = carrierClient.reserveDelivery(deliveryDTO);
 
         Purchase savedPurchase = new Purchase();
         savedPurchase.setOderId(order.getId());
         savedPurchase.setPreparationTime(order.getPreparationTime());
         savedPurchase.setDestinyAddress(purchase.getAddress().toString());
+
+        savedPurchase.setDeliveryDate(voucher.getDeliveryForecast());
+        savedPurchase.setVoucher(voucher.getNumber());
 
         repository.save(savedPurchase);
 
