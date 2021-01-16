@@ -42,4 +42,5 @@ public class InfoDeliveryDTO {
     public void setTargetAddress(String targetAddress) {
         this.targetAddress = targetAddress;
     }
+
 }

@@ -1,18 +1,23 @@
 package br.com.alura.microservices.store.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 public class Purchase {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private Long oderId;
     private Integer preparationTime;
     private String destinyAddress;
 
     private LocalDate deliveryDate;
     private Long voucher;
+
+    @Enumerated(EnumType.STRING)
+    private PurchaseState state;
 
     public LocalDate getDeliveryDate() {
         return deliveryDate;
@@ -52,5 +57,17 @@ public class Purchase {
 
     public void setDestinyAddress(String destinyAddress) {
         this.destinyAddress = destinyAddress;
+    }
+
+    public void setState(PurchaseState state) {
+        this.state = state;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public PurchaseState getState() {
+        return state;
     }
 }
